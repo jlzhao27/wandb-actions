@@ -1,4 +1,10 @@
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      job-config:
+        description: "job config for ml job"
+        required: true
+        default: '{"epochs": 100}'
 
 jobs:
   ml_training_job:
@@ -11,4 +17,4 @@ jobs:
         uses: ./
         id: train
         with:
-          job-config: '{"epochs": 10}'
+          job-config: "${{ github.event.inputs.job-config }}"
