@@ -1,0 +1,12 @@
+jobs:
+  ml_training_job:
+    runs-on: ubuntu-latest
+    name: A job to train a ML model
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Training job
+        uses: ./
+        id: train
+        with:
+          job-config: '{"epochs": 10}'
