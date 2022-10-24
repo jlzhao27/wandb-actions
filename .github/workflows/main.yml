@@ -17,6 +17,6 @@ jobs:
         uses: ./
         id: train
         env:
-          - WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
+          - WANDB_API_KEY: "${{ secrets.WANDB_API_KEY }}"
         with:
-          job-config: ${{ github.event.inputs.job-config }}
+          job-config: "${{ github.event.inputs.job-config }}"
