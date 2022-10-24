@@ -2,14 +2,14 @@ on:
   workflow_dispatch:
     inputs:
       job-config:
-        description: "job config for ml job"
+        description: "job config"
         required: true
         default: '{"epochs": 100}'
 
 jobs:
-  ml_training_job:
+  train:
     runs-on: ubuntu-latest
-    name: A job to train a ML model
+    name: Model Training
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -18,5 +18,4 @@ jobs:
         id: train
         env:
           WANDB_API_KEY: "${{ secrets.WANDB_API_KEY }}"
-        with:
-          job-config: "${{ github.event.inputs.job-config }}"
+          JOB_CONFIG: "${{ github.event.inputs.job-config }}"
