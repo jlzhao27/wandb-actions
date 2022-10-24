@@ -3,7 +3,7 @@ import random
 import json
 import os
 
-config_str = os.environ.get("CONFIG", None)
+config_str = os.environ.get("JOB_CONFIG", None)
 config = {}
 if config_str is not None:
     config = json.loads(config_str)
@@ -14,10 +14,7 @@ if is_ci is not None:
     gitsha = config["GITHUB_SHA"]
     name = "github-" + gitsha[:6]
 
-wandb.init(project="test", name=name)
-
-
-
+wandb.init(project="test", name=name, config=config)
 epochs = config.get("epochs", 100)
 
 
