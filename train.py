@@ -12,7 +12,7 @@ is_ci = os.environ.get("CI", None)
 name = None
 if is_ci is not None:
     gitsha = os.environ["GITHUB_SHA"]
-    name = "github-" + gitsha[:6]
+    name = "github-" + gitsha[:8]
 
 wandb.init(project="test", name=name, config=config)
 epochs = config.get("epochs", 100)
