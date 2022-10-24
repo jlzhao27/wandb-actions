@@ -8,7 +8,7 @@ config = {}
 if config_str is not None:
     config = json.loads(config_str)
 
-is_ci = config.get("CI", None)
+is_ci = os.environ.get("CI", None)
 name = None
 if is_ci is not None:
     gitsha = config["GITHUB_SHA"]
