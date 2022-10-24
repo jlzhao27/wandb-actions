@@ -1,0 +1,15 @@
+name: 'Train ML Model'
+description: 'Trains the latest and best production model'
+inputs:
+  job-config:  # job config
+    description: 'JSON string of a job config'
+    required: true
+    default: '{"epochs": 100}'
+outputs:
+  precision: # id of output
+    description: 'The resulting precision from the job'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.job-config }}
