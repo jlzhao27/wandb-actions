@@ -20,4 +20,5 @@ jobs:
         env:
           WANDB_API_KEY: "${{ secrets.WANDB_API_KEY }}"
           JOB_CONFIG: "${{ github.event.inputs.job-config }}"
+          GITHUB_SHA: "{{ github.sha }}"
           CI: "true"
