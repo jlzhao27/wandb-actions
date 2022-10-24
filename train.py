@@ -11,7 +11,7 @@ if config_str is not None:
 is_ci = os.environ.get("CI", None)
 name = None
 if is_ci is not None:
-    gitsha = config["GITHUB_SHA"]
+    gitsha = os.environ["GITHUB_SHA"]
     name = "github-" + gitsha[:6]
 
 wandb.init(project="test", name=name, config=config)
