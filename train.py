@@ -8,12 +8,16 @@ config = {}
 if config_str is not None:
     config = json.loads(config_str)
 
+print(config)
 is_ci = os.environ.get("CI", None)
 name = None
 if is_ci is not None:
     gitsha = os.environ["GITHUB_SHA"]
-    name = "github-" + gitsha[:8]
+    name = f'{config["artifactCollection"]}-{gitsha[:8]}'
 
+# HACK: since the artifact version uses a wandb-artifact://, the server will try to
+# resolve it and fail
+del config["artifactVersion"]
 wandb.init(project="test", name=name, config=config)
 epochs = config.get("epochs", 100)
 
